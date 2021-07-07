@@ -61,7 +61,7 @@ class Artista : BaseModel {
     }
 
     val nombreCompleto: String
-        get() = nombre + " " + apellidos
+        get() = "$nombre $apellidos"
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
