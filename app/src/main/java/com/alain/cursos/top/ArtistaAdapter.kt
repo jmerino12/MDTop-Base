@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
@@ -14,6 +15,7 @@ import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import de.hdodenhof.circleimageview.CircleImageView
 
 /****
  * Project: MD Postres
@@ -45,6 +47,7 @@ class ArtistaAdapter internal constructor(private var artistas: MutableList<Arti
 
         holder.setListener(artista)
         holder.tvNombre!!.text = artista.nombreCompleto
+        holder.tvNota!!.text = artista.notas
         holder.tvOrden!!.text = (position + 1).toString()
 
         if (artista.fotoUrl != null) {
@@ -80,11 +83,15 @@ class ArtistaAdapter internal constructor(private var artistas: MutableList<Arti
     inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         @JvmField
         @BindView(R.id.imgFoto)
-        var imgFoto: AppCompatImageView? = null
+        var imgFoto: CircleImageView? = null
 
         @JvmField
         @BindView(R.id.tvNombre)
         var tvNombre: AppCompatTextView? = null
+
+        @JvmField
+        @BindView(R.id.tvNote)
+        var tvNota: AppCompatTextView? = null
 
         @JvmField
         @BindView(R.id.tvOrden)
@@ -92,7 +99,7 @@ class ArtistaAdapter internal constructor(private var artistas: MutableList<Arti
 
         @JvmField
         @BindView(R.id.containerMain)
-        var containerMain: RelativeLayout? = null
+        var containerMain: ConstraintLayout? = null
 
         fun setListener(artista: Artista) {
             containerMain!!.setOnClickListener { view: View? -> listener.onItemClick(artista) }
