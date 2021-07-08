@@ -68,8 +68,12 @@
             </FrameLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNombre"
+                style="@style/MyTheme.DayNigth.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:helperText="@string/addArtist_help_required"
+                app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNombre"
@@ -81,8 +85,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilApellido"
+                style="@style/MyTheme.DayNigth.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:helperText="@string/addArtist_help_required"
+                app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etApellidos"
@@ -102,9 +110,12 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/MyTheme.DayNigth.TextInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="50">
+                    android:layout_marginEnd="@dimen/common_padding_min"
+                    android:layout_weight="50"
+                    app:startIconDrawable="@drawable/ic_insert_invitation">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFechaNacimiento"
@@ -115,9 +126,14 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEstatura"
+                    style="@style/MyTheme.DayNigth.TextInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="50">
+                    android:layout_marginStart="@dimen/common_padding_min"
+                    android:layout_weight="50"
+                    app:helperText="@string/addArtist_help_estaturaMin"
+                    app:startIconDrawable="@drawable/ic_insert_invitation">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEstatura"
@@ -130,10 +146,14 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLugarNacimiento"
+                style="@style/MyTheme.DayNigth.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_place">
 
                 <com.google.android.material.textfield.TextInputEditText
+
                     android:id="@+id/etLugarNacimiento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,11 +163,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNotas"
+                style="@style/MyTheme.DayNigth.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/item_padding_vertical">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNotas"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top|start"

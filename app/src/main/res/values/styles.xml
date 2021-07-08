@@ -40,5 +40,11 @@
         <item name="maxLines">2</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
+
+    <style name="MyTheme.DayNigth.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_marginStart">@dimen/item_padding_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/item_padding_vertical</item>
+        <item name="android:layout_marginEnd">@dimen/item_padding_horizontal</item>
+    </style>
 </resources>
 
