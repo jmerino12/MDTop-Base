@@ -20,6 +20,7 @@ import butterknife.OnClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,6 +67,10 @@ class AddArtistActivity : AppCompatActivity(), OnDateSetListener {
     @BindView(R.id.etNotas)
     var etNotas: TextInputEditText? = null
 
+    @JvmField
+    @BindView(R.id.toolbar)
+    var toolbar: MaterialToolbar? = null
+
     private var mArtista: Artista? = null
     private var mCalendar: Calendar? = null
 
@@ -80,6 +85,7 @@ class AddArtistActivity : AppCompatActivity(), OnDateSetListener {
     }
 
     private fun configActionBar() {
+        setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
