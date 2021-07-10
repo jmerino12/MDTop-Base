@@ -27,6 +27,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import java.text.SimpleDateFormat
 import java.util.*
@@ -101,6 +102,18 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     @BindView(R.id.fab)
     var fab: FloatingActionButton? = null
 
+    @JvmField
+    @BindView(R.id.tilNombre)
+    var tilNombre: TextInputLayout? = null
+
+    @JvmField
+    @BindView(R.id.tilApellido)
+    var tilApellido: TextInputLayout? = null
+
+    @JvmField
+    @BindView(R.id.tilEstatura)
+    var tilEstatura: TextInputLayout? = null
+
     private var mArtista: Artista? = null
     private var mCalendar: Calendar? = null
     private var mMenuItem: MenuItem? = null
@@ -121,8 +134,10 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
         getArtist(intent.getLongExtra(Artista.ID, 0))
         etNombre!!.setText(mArtista!!.nombre)
         etApellidos!!.setText(mArtista!!.apellidos)
-        etFechaNacimiento!!.setText(SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
-                .format(mArtista!!.fechaNacimiento))
+        etFechaNacimiento!!.setText(
+            SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
+                .format(mArtista!!.fechaNacimiento)
+        )
         etEdad!!.setText(getEdad(mArtista!!.fechaNacimiento))
         etEstatura!!.setText(mArtista!!.estatura.toString())
         etOrden!!.setText(mArtista!!.orden.toString())
@@ -132,10 +147,10 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
 
     private fun getArtist(id: Long) {
         mArtista = SQLite
-                .select()
-                .from(Artista::class.java)
-                .where(Artista_Table.id.`is`(id))
-                .querySingle()
+            .select()
+            .from(Artista::class.java)
+            .where(Artista_Table.id.`is`(id))
+            .querySingle()
     }
 
     private fun getEdad(fechaNacimiento: Long): String {
@@ -158,14 +173,19 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     private fun configImageView(fotoUrl: String?) {
         if (fotoUrl != null) {
             val options = RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
             Glide.with(this)
-                    .load(fotoUrl)
-                    .apply(options)
-                    .into(imgFoto!!)
+                .load(fotoUrl)
+                .apply(options)
+                .into(imgFoto!!)
         } else {
-            imgFoto!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_photo_size_select_actual))
+            imgFoto!!.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_photo_size_select_actual
+                )
+            )
         }
         mArtista!!.fotoUrl = fotoUrl
     }
@@ -213,7 +233,8 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     fun saveOrEdit() {
         if (mIsEdit) {
             if (validateFields() && etNombre!!.text != null && etApellidos!!.text != null &&
-                    etEstatura!!.text != null && etLugarNacimiento!!.text != null && etNotas!!.text != null) {
+                etEstatura!!.text != null && etLugarNacimiento!!.text != null && etNotas!!.text != null
+            ) {
                 mArtista!!.nombre = etNombre!!.text.toString().trim { it <= ' ' }
                 mArtista!!.apellidos = etApellidos!!.text.toString().trim { it <= ' ' }
                 mArtista!!.estatura = etEstatura!!.text.toString().trim { it <= ' ' }.toShort()
@@ -224,16 +245,16 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
                     configTitle()
                     showMessage(R.string.detalle_message_update_success)
                     Log.i("DBFlow", "Inserción correcta de datos.")
+
+                    fab!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_edit))
+                    enableUIElements(false)
+                    mIsEdit = false
                 } catch (e: Exception) {
                     e.printStackTrace()
                     showMessage(R.string.detalle_message_update_fail)
                     Log.i("DBFlow", "Error al insertar datos.")
                 }
             }
-
-            fab!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_edit))
-            enableUIElements(false)
-            mIsEdit = false
         } else {
             mIsEdit = true
             fab!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_check))
@@ -244,23 +265,34 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     private fun validateFields(): Boolean {
         var isValid = true
 
-        if (etEstatura!!.text != null && (etEstatura!!.text.toString().trim { it <= ' ' }.isEmpty() ||
-                        Integer.valueOf(etEstatura!!.text.toString().trim { it <= ' ' }) < resources.getInteger(R.integer.estatura_min))) {
-            etEstatura!!.error = getString(R.string.addArtist_error_estaturaMin)
-            etEstatura!!.requestFocus()
+        if (etEstatura!!.text != null && (etEstatura!!.text.toString().trim { it <= ' ' }
+                .isEmpty() ||
+                    Integer.valueOf(
+                        etEstatura!!.text.toString()
+                            .trim { it <= ' ' }) < resources.getInteger(R.integer.estatura_min))
+        ) {
+            tilEstatura!!.error = getString(R.string.addArtist_error_estaturaMin)
+            tilEstatura!!.requestFocus()
             isValid = false
+        } else {
+            tilEstatura!!.error = null
         }
 
-        if (etApellidos!!.text != null && etApellidos!!.text.toString().trim { it <= ' ' }.isEmpty()) {
-            etApellidos!!.error = getString(R.string.addArtist_error_required)
-            etApellidos!!.requestFocus()
+        if (etApellidos!!.text != null && etApellidos!!.text.toString().trim { it <= ' ' }
+                .isEmpty()) {
+            tilApellido!!.error = getString(R.string.addArtist_error_required)
+            tilApellido!!.requestFocus()
             isValid = false
+        } else {
+            tilApellido!!.error = null
         }
 
         if (etNombre!!.text != null && etNombre!!.text.toString().trim { it <= ' ' }.isEmpty()) {
-            etNombre!!.error = getString(R.string.addArtist_error_required)
-            etNombre!!.requestFocus()
+            tilNombre!!.error = getString(R.string.addArtist_error_required)
+            tilNombre!!.requestFocus()
             isValid = false
+        } else {
+            tilNombre!!.error = null
         }
 
         return isValid
@@ -283,8 +315,11 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
         mCalendar!![Calendar.YEAR] = year
         mCalendar!![Calendar.MONTH] = month
         mCalendar!![Calendar.DAY_OF_MONTH] = day
-        etFechaNacimiento!!.setText(SimpleDateFormat("dd/MM/yyyy", Locale.ROOT).format(
-                mCalendar!!.timeInMillis))
+        etFechaNacimiento!!.setText(
+            SimpleDateFormat("dd/MM/yyyy", Locale.ROOT).format(
+                mCalendar!!.timeInMillis
+            )
+        )
         mArtista!!.fechaNacimiento = mCalendar!!.timeInMillis
         etEdad!!.setText(getEdad(mCalendar!!.timeInMillis))
     }
@@ -308,22 +343,30 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
         when (view.id) {
             R.id.imgDeleteFoto -> {
                 val builder = AlertDialog.Builder(this)
-                        .setTitle(R.string.detalle_dialogDelete_title)
-                        .setMessage(String.format(Locale.ROOT,
-                                getString(R.string.detalle_dialogDelete_message),
-                                mArtista!!.nombreCompleto))
-                        .setPositiveButton(R.string.label_dialog_delete) { dialogInterface: DialogInterface?, i: Int ->
-                            savePhotoUrlArtist(null)
-                        }
-                        .setNegativeButton(R.string.label_dialog_cancel, null)
+                    .setTitle(R.string.detalle_dialogDelete_title)
+                    .setMessage(
+                        String.format(
+                            Locale.ROOT,
+                            getString(R.string.detalle_dialogDelete_message),
+                            mArtista!!.nombreCompleto
+                        )
+                    )
+                    .setPositiveButton(R.string.label_dialog_delete) { dialogInterface: DialogInterface?, i: Int ->
+                        savePhotoUrlArtist(null)
+                    }
+                    .setNegativeButton(R.string.label_dialog_cancel, null)
                 builder.show()
             }
             R.id.imgFromGallery -> {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.type = "image/jpeg"
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
-                startActivityForResult(Intent.createChooser(intent,
-                        getString(R.string.detalle_chooser_title)), RC_PHOTO_PICKER)
+                startActivityForResult(
+                    Intent.createChooser(
+                        intent,
+                        getString(R.string.detalle_chooser_title)
+                    ), RC_PHOTO_PICKER
+                )
             }
             R.id.imgFromUrl -> showAddPhotoDialog()
         }
@@ -332,11 +375,11 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     private fun showAddPhotoDialog() {
         val etFotoUrl = EditText(this)
         val builder = AlertDialog.Builder(this)
-                .setTitle(R.string.addArtist_dialogUrl_title)
-                .setPositiveButton(R.string.label_dialog_add) { dialogInterface: DialogInterface?, i: Int ->
-                    savePhotoUrlArtist(etFotoUrl.text.toString().trim { it <= ' ' })
-                }
-                .setNegativeButton(R.string.label_dialog_cancel, null)
+            .setTitle(R.string.addArtist_dialogUrl_title)
+            .setPositiveButton(R.string.label_dialog_add) { dialogInterface: DialogInterface?, i: Int ->
+                savePhotoUrlArtist(etFotoUrl.text.toString().trim { it <= ' ' })
+            }
+            .setNegativeButton(R.string.label_dialog_cancel, null)
         builder.setView(etFotoUrl)
         builder.show()
     }
