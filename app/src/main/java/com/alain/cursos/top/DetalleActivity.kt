@@ -24,6 +24,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -342,7 +343,7 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     fun photoHandler(view: View) {
         when (view.id) {
             R.id.imgDeleteFoto -> {
-                val builder = AlertDialog.Builder(this)
+                val builder = MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
                     .setTitle(R.string.detalle_dialogDelete_title)
                     .setMessage(
                         String.format(
@@ -374,7 +375,7 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
 
     private fun showAddPhotoDialog() {
         val etFotoUrl = EditText(this)
-        val builder = AlertDialog.Builder(this)
+        val builder = MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
             .setTitle(R.string.addArtist_dialogUrl_title)
             .setPositiveButton(R.string.label_dialog_add) { dialogInterface: DialogInterface?, i: Int ->
                 savePhotoUrlArtist(etFotoUrl.text.toString().trim { it <= ' ' })

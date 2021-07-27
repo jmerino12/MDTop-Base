@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import java.util.*
@@ -207,7 +208,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             vibrator.vibrate(60)
         }
 
-        val builder = AlertDialog.Builder(this)
+        val builder =  MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
             .setTitle(R.string.main_dialogDelete_title)
             .setMessage(
                 String.format(
