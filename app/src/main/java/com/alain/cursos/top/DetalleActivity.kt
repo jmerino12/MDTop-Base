@@ -24,6 +24,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -46,7 +48,7 @@ import java.util.*
  * https://www.udemy.com/course/kotlin-intensivo/?referralCode=93D5D2FA6EF503FD0A6B
  */
 
-class DetalleActivity : AppCompatActivity(), OnDateSetListener {
+class DetalleActivity : AppCompatActivity() {
     @JvmField
     @BindView(R.id.imgFoto)
     var imgFoto: AppCompatImageView? = null
@@ -116,7 +118,6 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
     var tilEstatura: TextInputLayout? = null
 
     private var mArtista: Artista? = null
-    private var mCalendar: Calendar? = null
     private var mMenuItem: MenuItem? = null
     private var mIsEdit = false
 
@@ -128,16 +129,16 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
         configArtista(intent)
         configActionBar()
         configImageView(mArtista!!.fotoUrl)
-        configCalendar()
     }
 
     private fun configArtista(intent: Intent) {
         getArtist(intent.getLongExtra(Artista.ID, 0))
         etNombre!!.setText(mArtista!!.nombre)
         etApellidos!!.setText(mArtista!!.apellidos)
+        val format = SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
+        format.timeZone = TimeZone.getTimeZone("UTC")
         etFechaNacimiento!!.setText(
-            SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
-                .format(mArtista!!.fechaNacimiento)
+            format.format(mArtista!!.fechaNacimiento)
         )
         etEdad!!.setText(getEdad(mArtista!!.fechaNacimiento))
         etEstatura!!.setText(mArtista!!.estatura.toString())
@@ -191,9 +192,6 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
         mArtista!!.fotoUrl = fotoUrl
     }
 
-    private fun configCalendar() {
-        mCalendar = Calendar.getInstance(Locale.ROOT)
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_save, menu)
@@ -247,7 +245,12 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
                     showMessage(R.string.detalle_message_update_success)
                     Log.i("DBFlow", "Inserción correcta de datos.")
 
-                    fab!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_account_edit))
+                    fab!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_account_edit
+                        )
+                    )
                     enableUIElements(false)
                     mIsEdit = false
                 } catch (e: Exception) {
@@ -311,28 +314,24 @@ class DetalleActivity : AppCompatActivity(), OnDateSetListener {
         containerMain!!.isNestedScrollingEnabled = !enable
     }
 
-    override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
-        mCalendar!!.timeInMillis = System.currentTimeMillis()
-        mCalendar!![Calendar.YEAR] = year
-        mCalendar!![Calendar.MONTH] = month
-        mCalendar!![Calendar.DAY_OF_MONTH] = day
-        etFechaNacimiento!!.setText(
-            SimpleDateFormat("dd/MM/yyyy", Locale.ROOT).format(
-                mCalendar!!.timeInMillis
-            )
-        )
-        mArtista!!.fechaNacimiento = mCalendar!!.timeInMillis
-        etEdad!!.setText(getEdad(mCalendar!!.timeInMillis))
-    }
-
     @OnClick(R.id.etFechaNacimiento)
     fun onSetFecha() {
-        val selectorFecha = DialogSelectorFecha()
-        selectorFecha.setListener(this@DetalleActivity)
-        val args = Bundle()
-        args.putLong(DialogSelectorFecha.FECHA, mArtista!!.fechaNacimiento)
-        selectorFecha.arguments = args
-        selectorFecha.show(supportFragmentManager, DialogSelectorFecha.SELECTED_DATE)
+        val builder = MaterialDatePicker.Builder.datePicker()
+        builder.setSelection(mArtista!!.fechaNacimiento)
+        val constrains = CalendarConstraints.Builder()
+        constrains.setOpenAt(mArtista!!.fechaNacimiento)
+        builder.setCalendarConstraints(constrains.build())
+        val picker = builder.build()
+        picker.addOnPositiveButtonClickListener {
+            val format = SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
+            format.timeZone = TimeZone.getTimeZone("UTC")
+            etFechaNacimiento!!.setText(
+                format.format(it)
+            )
+            mArtista!!.fechaNacimiento = it
+            etEdad!!.setText(getEdad(it))
+        }
+        picker.show(supportFragmentManager, picker.toString())
     }
 
     private fun showMessage(resource: Int) {

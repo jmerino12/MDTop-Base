@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -40,7 +41,7 @@ import java.util.*
  * https://www.udemy.com/course/kotlin-intensivo/?referralCode=93D5D2FA6EF503FD0A6B
  */
 
-class AddArtistActivity : AppCompatActivity(), OnDateSetListener {
+class AddArtistActivity : AppCompatActivity() {
     @JvmField
     @BindView(R.id.imgFoto)
     var imgFoto: AppCompatImageView? = null
@@ -86,7 +87,6 @@ class AddArtistActivity : AppCompatActivity(), OnDateSetListener {
     var tilEstura: TextInputLayout? = null
 
     private var mArtista: Artista? = null
-    private var mCalendar: Calendar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,7 +111,6 @@ class AddArtistActivity : AppCompatActivity(), OnDateSetListener {
     }
 
     private fun configCalendar() {
-        mCalendar = Calendar.getInstance(Locale.ROOT)
         etFechaNacimiento!!.setText(
             SimpleDateFormat("dd/MM/yyyy", Locale.ROOT).format(
                 System.currentTimeMillis()
@@ -205,35 +204,23 @@ class AddArtistActivity : AppCompatActivity(), OnDateSetListener {
 
     @OnClick(R.id.etFechaNacimiento)
     fun onSetFecha() {
-        val selectorFecha = DialogSelectorFecha()
-        selectorFecha.setListener(this@AddArtistActivity)
-
-        val args = Bundle()
-        args.putLong(DialogSelectorFecha.FECHA, mArtista!!.fechaNacimiento)
-
-        selectorFecha.arguments = args
-        selectorFecha.show(supportFragmentManager, DialogSelectorFecha.SELECTED_DATE)
-    }
-
-    override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
-        mCalendar!!.timeInMillis = System.currentTimeMillis()
-        mCalendar!![Calendar.YEAR] = year
-        mCalendar!![Calendar.MONTH] = month
-        mCalendar!![Calendar.DAY_OF_MONTH] = day
-
-        etFechaNacimiento!!.setText(
-            SimpleDateFormat("dd/MM/yyyy", Locale.ROOT).format(
-                mCalendar!!.timeInMillis
-            )
-        )
-        mArtista!!.fechaNacimiento = mCalendar!!.timeInMillis
+        val builder = MaterialDatePicker.Builder.datePicker()
+        builder.setTheme(R.style.PickerDialogCut)
+        val picker = builder.build()
+        picker.addOnPositiveButtonClickListener {
+            val format = SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
+            format.timeZone = TimeZone.getTimeZone("UTC")
+            etFechaNacimiento!!.setText(format.format(it))
+            mArtista!!.fechaNacimiento = it
+        }
+        picker.show(supportFragmentManager, picker.toString())
     }
 
     @OnClick(R.id.imgDeleteFoto, R.id.imgFromGallery, R.id.imgFromUrl)
     fun imageEvents(view: View) {
         when (view.id) {
             R.id.imgDeleteFoto -> {
-                val builder =  MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
+                val builder = MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
                     .setTitle(R.string.detalle_dialogDelete_title)
                     .setMessage(
                         String.format(
