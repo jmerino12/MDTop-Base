@@ -44,11 +44,4 @@
         <item name="colorAccent">?colorSecondary</item>
     </style>
 
-    <style name="PickerDialogCut" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
-        <item name="materialCalendarHeaderLayout">@null</item>
-    </style>
-
-    <style name="MyMaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="colorPrimary">@color/color_primary_variant</item>
-    </style>
 </resources>

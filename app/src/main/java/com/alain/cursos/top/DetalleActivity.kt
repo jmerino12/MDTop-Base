@@ -318,6 +318,7 @@ class DetalleActivity : AppCompatActivity() {
     fun onSetFecha() {
         val builder = MaterialDatePicker.Builder.datePicker()
         builder.setSelection(mArtista!!.fechaNacimiento)
+        builder.setTheme(R.style.PickerDialogCut)
         val constrains = CalendarConstraints.Builder()
         constrains.setOpenAt(mArtista!!.fechaNacimiento)
         builder.setCalendarConstraints(constrains.build())
