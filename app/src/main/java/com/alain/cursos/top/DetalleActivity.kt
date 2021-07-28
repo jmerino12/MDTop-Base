@@ -3,6 +3,7 @@ package com.alain.cursos.top
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -12,6 +13,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -34,6 +36,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.abs
 
 /****
  * Project: MD Postres
@@ -165,6 +168,29 @@ class DetalleActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbarLayout?.setExpandedTitleColor(Color.WHITE)
+        appBar?.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener
+        { appBarLayout, verticalOffset ->
+            /* if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
+                 toolbar?.navigationIcon?.setTint(Color.BLACK)
+             }else{
+                 toolbar?.navigationIcon?.setTint(Color.WHITE)
+             }*/
+            if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
+                val percentage: Float =
+                    Math.abs(
+                        Math.abs(verticalOffset).toFloat() / appBarLayout.totalScrollRange - 1
+                    )
+                val colorValue: Int = (percentage * 255).toInt()
+                toolbar!!.navigationIcon!!.setTint(
+                    Color.rgb(
+                        colorValue,
+                        colorValue,
+                        colorValue
+                    )
+                )
+            }
+        })
         configTitle()
     }
 
@@ -201,8 +227,13 @@ class DetalleActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_save) {
-            saveOrEdit()
+        when (item.itemId) {
+            R.id.action_save -> {
+                saveOrEdit()
+            }
+            android.R.id.home->{
+                finish()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
