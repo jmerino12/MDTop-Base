@@ -24,4 +24,6 @@
 
     <color name="color_divider">#1E000000</color>
 
+    <color name="color_collapsin_toolbar_layout">@color/color_primary</color>
+
 </resources>
