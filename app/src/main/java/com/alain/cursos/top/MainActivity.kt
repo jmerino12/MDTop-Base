@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun configTheme() {
+        setTheme(R.style.MyTheme_DayNigth)
         mSharedPreferends = getPreferences(MODE_PRIVATE)
         mIsModeNigth = mSharedPreferends.getBoolean(SP_DARK_THEME, false)
         if (mIsModeNigth as Boolean) {

@@ -54,5 +54,9 @@
     <style name="MyMaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorPrimary">@color/color_primary_variant</item>
     </style>
+
+    <style name="Splash" parent="MyTheme.DayNigth">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
 </resources>
 
