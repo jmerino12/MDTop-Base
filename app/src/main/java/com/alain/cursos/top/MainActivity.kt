@@ -3,6 +3,7 @@ package com.alain.cursos.top
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -10,7 +11,6 @@ import android.os.Vibrator
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -53,17 +53,29 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private var adapter: ArtistaAdapter? = null
 
+    private val SP_DARK_THEME = "spDarkTheme"
+    private lateinit var mSharedPreferends: SharedPreferences
+    private var mIsModeNigth: Boolean? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
-
+        configTheme()
         configToolbar()
         configAdapter()
         configRecyclerView()
 
         if (artistasFromDB.size == 0) {
             generateArtist()
+        }
+    }
+
+    private fun configTheme() {
+        mSharedPreferends = getPreferences(MODE_PRIVATE)
+        mIsModeNigth = mSharedPreferends.getBoolean(SP_DARK_THEME, false)
+        if (mIsModeNigth as Boolean) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
 
@@ -181,12 +193,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         when (item.itemId) {
             R.id.action_ligthTheme -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                mIsModeNigth = false
 
             }
             R.id.action_darkTheme -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                mIsModeNigth = true
             }
         }
+        val editor = mSharedPreferends.edit()
+        mIsModeNigth?.let { editor.putBoolean(SP_DARK_THEME, it) }
+        editor.apply()
         return super.onOptionsItemSelected(item)
     }
 
@@ -208,7 +225,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             vibrator.vibrate(60)
         }
 
-        val builder =  MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
+        val builder = MaterialAlertDialogBuilder(this)//AlertDialog.Builder(this)
             .setTitle(R.string.main_dialogDelete_title)
             .setMessage(
                 String.format(
