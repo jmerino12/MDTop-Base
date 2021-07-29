@@ -1,6 +1,5 @@
 package com.alain.cursos.top
 
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.DatePicker
 import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -125,7 +122,7 @@ class AddArtistActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> finishAfterTransition()//finish()
             R.id.action_save -> saveArtist()
         }
         return super.onOptionsItemSelected(item)
@@ -148,8 +145,8 @@ class AddArtistActivity : AppCompatActivity() {
                 e.printStackTrace()
                 Log.i("DBFlow", "Error al insertar datos.")
             }
-
-            finish()
+            finishAfterTransition()
+            //finish()
         }
     }
 

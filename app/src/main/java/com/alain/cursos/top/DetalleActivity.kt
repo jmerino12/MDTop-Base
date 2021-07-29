@@ -1,6 +1,5 @@
 package com.alain.cursos.top
 
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -9,9 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.DatePicker
 import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatImageView
@@ -36,7 +33,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.abs
 
 /****
  * Project: MD Postres
@@ -232,7 +228,7 @@ class DetalleActivity : AppCompatActivity() {
                 saveOrEdit()
             }
             android.R.id.home->{
-                finish()
+                super.onBackPressed()
             }
         }
         return super.onOptionsItemSelected(item)
