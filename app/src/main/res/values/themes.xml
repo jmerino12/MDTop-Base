@@ -31,8 +31,8 @@
         <item name="materialAlertDialogTheme">@style/MyMaterialAlertDialog</item>
 
         <!-- Transitions -->
-        <item name="android:windowEnterTransition">@android:transition/explode</item>
-        <item name="android:windowExitTransition">@android:transition/fade</item>
+        <item name="android:windowEnterTransition">@transition/fade_in</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>
 
     </style>
 
