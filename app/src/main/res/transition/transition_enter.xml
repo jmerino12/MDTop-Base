@@ -13,6 +13,7 @@
          android:duration="1500"
          android:fadingMode="fade_in_out"
          android:startDelay="500" />-->
+
     <fade
         android:duration="1500"
         android:fadingMode="fade_in_out"
