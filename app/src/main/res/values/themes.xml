@@ -42,7 +42,10 @@
 
         <!-- <item name="android:windowEnterTransition">@transition/transition_enter</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>-->
-        <item name="android:windowEnterTransition">@transition/transition_enter_alt</item>
+        <!-- <item name="android:windowEnterTransition">@transition/transition_enter_alt</item>
+         <item name="android:windowExitTransition">@transition/fade_out</item>-->
+
+        <item name="android:windowEnterTransition">@transition/fade_in</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>
 
         <item name="android:fragmentSharedElementEnterTransition">@transition/share_elements</item>
