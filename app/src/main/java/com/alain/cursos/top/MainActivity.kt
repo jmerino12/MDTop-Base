@@ -1,5 +1,6 @@
 package com.alain.cursos.top
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -214,7 +215,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onItemClick(artista: Artista?) {
         val intent = Intent(this@MainActivity, DetalleActivity::class.java)
         intent.putExtra(Artista.ID, artista!!.id)
-        startActivity(intent)
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        //startActivity(intent)
     }
 
     override fun onLongItemClick(artista: Artista?) {
@@ -253,7 +255,12 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         val intent = Intent(this@MainActivity, AddArtistActivity::class.java)
         intent.putExtra(Artista.ORDEN, adapter!!.itemCount + 1)
         //startActivity(intent);
-        startActivityForResult(intent, 1)
+        //startActivityForResult(intent, 1)
+        startActivityForResult(
+            intent,
+            1,
+            ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+        )
     }
 
     private fun showMessage(resource: Int) {
