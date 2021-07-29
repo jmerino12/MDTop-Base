@@ -49,6 +49,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNote"
+        android:transitionName="@string/tn_note"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/item_padding_vertical"

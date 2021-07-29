@@ -176,7 +176,8 @@
                 android:gravity="top|start"
                 android:hint="@string/artist_hint_notas"
                 android:inputType="textMultiLine"
-                android:maxLength="@integer/notas_maxLenght" />
+                android:maxLength="@integer/notas_maxLenght"
+                android:transitionName="@string/tn_note" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 

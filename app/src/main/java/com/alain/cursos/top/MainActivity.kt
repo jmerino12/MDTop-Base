@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
+import android.util.Pair
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -213,19 +214,30 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     /******
      * Métodos implementados por la interface OnItemClickListener
      */
-    override fun onItemClick(artista: Artista?, view: View) {
+    override fun onItemClick(artista: Artista?, imgPhoto: View, tvNote: View) {
         val intent = Intent(this@MainActivity, DetalleActivity::class.java)
         intent.putExtra(Artista.ID, artista!!.id)
         //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         //startActivity(intent)
-        startActivity(
+        //val imgPair: Pair<View, String> = Pair.create(imgPhoto, imgPhoto.transitionName)
+        //val notePair:Pair<View, String> = Pair.create(tvNote,tvNote.transitionName)
+
+        val imgPair: Pair<View, String> =
+            Pair.create(imgPhoto, getString(R.string.transition_name_photo))
+        val notePair: Pair<View, String> = Pair.create(tvNote, getString(R.string.tn_note))
+
+        /*startActivity(
             intent,
             ActivityOptions.makeSceneTransitionAnimation(
                 this,
-                view,
+                imgPhoto,
                 getString(R.string.transition_name_photo)
             ).toBundle()
-        )
+        )*/
+
+        val options: ActivityOptions =
+            ActivityOptions.makeSceneTransitionAnimation(this, imgPair, notePair)
+        startActivity(intent, options.toBundle())
     }
 
     override fun onLongItemClick(artista: Artista?) {

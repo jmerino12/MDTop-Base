@@ -36,4 +36,5 @@
     <string name="addArtist_help_required">Requerido</string>
     <string name="addArtist_help_estaturaMin">Estatura minima: 50cm</string>
     <string name="transition_name_photo">tnPhoto</string>
+    <string name="tn_note">tnNote</string>
 </resources>

@@ -47,7 +47,7 @@ class ArtistaAdapter internal constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val artista = artistas[position]
 
-        holder.setListener(artista, holder.imgFoto!!.rootView)
+        holder.setListener(artista, holder.imgFoto!!.rootView, holder.tvNota!!.rootView)
         holder.tvNombre!!.text = artista.nombreCompleto
         holder.tvNota!!.text = artista.notas
         holder.tvOrden!!.text = (position + 1).toString()
@@ -108,9 +108,9 @@ class ArtistaAdapter internal constructor(
         @BindView(R.id.containerMain)
         var containerMain: ConstraintLayout? = null
 
-        fun setListener(artista: Artista, imgPhoto: View) {
+        fun setListener(artista: Artista, imgPhoto: View, tvNote: View) {
             containerMain!!.setOnClickListener { view: View? ->
-                listener.onItemClick(artista, imgPhoto)//listener.onItemClick(artista) }
+                listener.onItemClick(artista, imgPhoto, tvNote)//listener.onItemClick(artista) }
                 containerMain!!.setOnLongClickListener { view: View? ->
                     listener.onLongItemClick(artista)
                     true
