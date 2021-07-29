@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="MyTheme.DayNigth" parent="Base.MyTheme">
-
-    </style>
+    <style name="MyTheme.DayNight" parent="Base.MyTheme"/>
 
     <style name="Base.MyTheme" parent="Base.MaterialThemeBuilder">
         <item name="colorPrimary">@color/color_primary</item>
@@ -21,13 +19,12 @@
         <item name="colorOnSurface">@color/color_on_surface</item>
         <item name="colorOnError">@color/color_on_error</item>
 
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyTheme.SmallComponent
-        </item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MyTheme.MediumComponent
-        </item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MyTheme.LargeComponent
-        </item>
+        <!-- Shape -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyTheme.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MyTheme.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MyTheme.LargeComponent</item>
 
+        <!-- Custom Component Styles -->
         <item name="materialAlertDialogTheme">@style/MyMaterialAlertDialog</item>
     </style>
 
@@ -36,9 +33,7 @@
         <item name="android:statusBarColor">?colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?android:colorBackground</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
-        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
-            ?colorControlHighlight
-        </item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?colorControlHighlight</item>
 
         <item name="colorPrimaryDark">?colorPrimaryVariant</item>
         <item name="colorAccent">?colorSecondary</item>

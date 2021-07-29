@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -55,8 +55,16 @@
         <item name="colorPrimary">@color/color_primary_variant</item>
     </style>
 
-    <style name="Splash" parent="MyTheme.DayNigth">
+    <style name="Splash" parent="BaseSplash">
+
+    </style>
+
+    <style name="BaseSplash" parent="MyTheme.DayNight">
         <item name="android:windowBackground">@drawable/background_splash</item>
+        <item name="android:statusBarColor">?colorSecondary</item>
+
+        <item name="android:navigationBarColor">?colorSecondary</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 </resources>
 

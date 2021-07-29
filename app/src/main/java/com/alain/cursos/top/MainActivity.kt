@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        configTheme()
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
-        configTheme()
         configToolbar()
         configAdapter()
         configRecyclerView()
