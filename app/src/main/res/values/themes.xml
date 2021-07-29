@@ -40,7 +40,9 @@
         <!--  <item name="android:windowEnterTransition">@transition/explode</item>
          <item name="android:windowExitTransition">@transition/explode</item> -->
 
-        <item name="android:windowEnterTransition">@transition/transition_enter</item>
+        <!-- <item name="android:windowEnterTransition">@transition/transition_enter</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>-->
+        <item name="android:windowEnterTransition">@transition/transition_enter_alt</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>
     </style>
 
