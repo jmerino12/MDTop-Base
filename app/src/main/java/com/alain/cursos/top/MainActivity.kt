@@ -12,6 +12,7 @@ import android.os.Vibrator
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -212,11 +213,19 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     /******
      * Métodos implementados por la interface OnItemClickListener
      */
-    override fun onItemClick(artista: Artista?) {
+    override fun onItemClick(artista: Artista?, view: View) {
         val intent = Intent(this@MainActivity, DetalleActivity::class.java)
         intent.putExtra(Artista.ID, artista!!.id)
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         //startActivity(intent)
+        startActivity(
+            intent,
+            ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                view,
+                getString(R.string.transition_name_photo)
+            ).toBundle()
+        )
     }
 
     override fun onLongItemClick(artista: Artista?) {

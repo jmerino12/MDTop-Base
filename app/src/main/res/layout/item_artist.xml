@@ -13,6 +13,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgFoto"
+        android:transitionName="@string/transition_name_photo"
         android:layout_width="@dimen/img_item_size"
         android:layout_height="@dimen/img_item_size"
         android:layout_marginStart="@dimen/item_padding_horizontal"

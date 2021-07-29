@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -29,15 +27,19 @@ import de.hdodenhof.circleimageview.CircleImageView
  * Android con Kotlin intensivo y práctico desde cero.
  * https://www.udemy.com/course/kotlin-intensivo/?referralCode=93D5D2FA6EF503FD0A6B
  */
-class ArtistaAdapter internal constructor(private var artistas: MutableList<Artista>,
-                                          private val listener: OnItemClickListener) :
-        RecyclerView.Adapter<ArtistaAdapter.ViewHolder>() {
+class ArtistaAdapter internal constructor(
+    private var artistas: MutableList<Artista>,
+    private val listener: OnItemClickListener
+) :
+    RecyclerView.Adapter<ArtistaAdapter.ViewHolder>() {
 
     private var context: Context? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_artist, parent,
-                false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_artist, parent,
+            false
+        )
         context = parent.context
         return ViewHolder(view)
     }
@@ -45,22 +47,27 @@ class ArtistaAdapter internal constructor(private var artistas: MutableList<Arti
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val artista = artistas[position]
 
-        holder.setListener(artista)
+        holder.setListener(artista, holder.imgFoto!!.rootView)
         holder.tvNombre!!.text = artista.nombreCompleto
         holder.tvNota!!.text = artista.notas
         holder.tvOrden!!.text = (position + 1).toString()
 
         if (artista.fotoUrl != null) {
             val options = RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_sentiment_satisfied)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
+                .placeholder(R.drawable.ic_sentiment_satisfied)
             Glide.with(context!!)
-                    .load(artista.fotoUrl)
-                    .apply(options)
-                    .into(holder.imgFoto!!)
+                .load(artista.fotoUrl)
+                .apply(options)
+                .into(holder.imgFoto!!)
         } else {
-            holder.imgFoto!!.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_account_box))
+            holder.imgFoto!!.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context!!,
+                    R.drawable.ic_account_box
+                )
+            )
         }
     }
 
@@ -101,12 +108,16 @@ class ArtistaAdapter internal constructor(private var artistas: MutableList<Arti
         @BindView(R.id.containerMain)
         var containerMain: ConstraintLayout? = null
 
-        fun setListener(artista: Artista) {
-            containerMain!!.setOnClickListener { view: View? -> listener.onItemClick(artista) }
-            containerMain!!.setOnLongClickListener { view: View? ->
-                listener.onLongItemClick(artista)
-                true
+        fun setListener(artista: Artista, imgPhoto: View) {
+            containerMain!!.setOnClickListener { view: View? ->
+                listener.onItemClick(artista, imgPhoto)//listener.onItemClick(artista) }
+                containerMain!!.setOnLongClickListener { view: View? ->
+                    listener.onLongItemClick(artista)
+                    true
+                }
             }
+
+
         }
 
         init {

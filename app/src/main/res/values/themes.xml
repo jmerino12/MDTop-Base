@@ -44,6 +44,9 @@
         <item name="android:windowExitTransition">@transition/fade_out</item>-->
         <item name="android:windowEnterTransition">@transition/transition_enter_alt</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>
+
+        <item name="android:fragmentSharedElementEnterTransition">@transition/share_elements</item>
+        <item name="android:fragmentSharedElementReturnTransition">@transition/share_elements</item>
     </style>
 
     <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">

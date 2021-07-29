@@ -1,5 +1,7 @@
 package com.alain.cursos.top
 
+import android.view.View
+
 /****
  * Project: MD Postres
  * From: com.cursosant.android.mdpostres
@@ -14,6 +16,7 @@ package com.alain.cursos.top
  */
 
 internal interface OnItemClickListener {
-    fun onItemClick(artista: Artista?)
+    //fun onItemClick(artista: Artista?)
+    fun onItemClick(artista: Artista?, view: View)
     fun onLongItemClick(artista: Artista?)
 }
