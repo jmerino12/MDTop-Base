@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="false"
+            android:transitionName="@string/tn_Name"
             app:contentScrim="@color/color_collapsin_toolbar_layout"
             app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded.Shadow"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -29,10 +30,10 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgFoto"
-                    android:transitionName="@string/transition_name_photo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_bar_height"
-                    android:src="@drawable/ic_photo_size_select_actual" />
+                    android:src="@drawable/ic_photo_size_select_actual"
+                    android:transitionName="@string/transition_name_photo" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -71,11 +72,11 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_account_edit"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 

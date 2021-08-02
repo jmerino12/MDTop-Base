@@ -137,7 +137,8 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/artist_hint_orden" />
+                    android:hint="@string/artist_hint_orden"
+                    android:transitionName="@string/tn_Order" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

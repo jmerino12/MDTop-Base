@@ -18,7 +18,8 @@ import android.view.View
 internal interface OnItemClickListener {
     //fun onItemClick(artista: Artista?)
     //fun onItemClick(artista: Artista?, view: View)
-    fun onItemClick(artista: Artista?, imgPhoto: View, tvNote: View)
+    //fun onItemClick(artista: Artista?, imgPhoto: View, tvNote: View)
+    fun onItemClick(artista: Artista?, imgPhoto: View, tvNote: View, tvOrder: View, tvName: View)
 
     fun onLongItemClick(artista: Artista?)
 }

@@ -214,7 +214,13 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     /******
      * Métodos implementados por la interface OnItemClickListener
      */
-    override fun onItemClick(artista: Artista?, imgPhoto: View, tvNote: View) {
+    override fun onItemClick(
+        artista: Artista?,
+        imgPhoto: View,
+        tvNote: View,
+        tvOrder: View,
+        tvName: View
+    ) {
         val intent = Intent(this@MainActivity, DetalleActivity::class.java)
         intent.putExtra(Artista.ID, artista!!.id)
         //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
@@ -225,6 +231,9 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         val imgPair: Pair<View, String> =
             Pair.create(imgPhoto, getString(R.string.transition_name_photo))
         val notePair: Pair<View, String> = Pair.create(tvNote, getString(R.string.tn_note))
+        val orderPair: Pair<View, String> = Pair.create(tvNote, getString(R.string.tn_Order))
+        val namePair: Pair<View, String> = Pair.create(tvNote, getString(R.string.tn_Name))
+
 
         /*startActivity(
             intent,
@@ -236,7 +245,13 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         )*/
 
         val options: ActivityOptions =
-            ActivityOptions.makeSceneTransitionAnimation(this, imgPair, notePair)
+            ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                imgPair,
+                notePair,
+                orderPair,
+                namePair
+            )
         startActivity(intent, options.toBundle())
     }
 

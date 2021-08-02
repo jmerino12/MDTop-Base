@@ -13,11 +13,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgFoto"
-        android:transitionName="@string/transition_name_photo"
         android:layout_width="@dimen/img_item_size"
         android:layout_height="@dimen/img_item_size"
         android:layout_marginStart="@dimen/item_padding_horizontal"
         android:src="@drawable/ic_account_box"
+        android:transitionName="@string/transition_name_photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +30,7 @@
         android:gravity="center"
         android:hint="@string/artist_hint_orden"
         android:textSize="@dimen/item_text_size_secondary"
+        android:transitionName="@string/tn_Order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,18 +44,19 @@
         android:layout_toEndOf="@id/imgFoto"
         android:hint="@string/artist_hint_nombre"
         android:textAppearance="@style/ItemLarge"
+        android:transitionName="@string/tn_Name"
         app:layout_constraintEnd_toStartOf="@id/tvOrden"
         app:layout_constraintStart_toEndOf="@id/imgFoto"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNote"
-        android:transitionName="@string/tn_note"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/item_padding_vertical"
         android:hint="@string/artist_hint_notas"
         android:textAppearance="@style/ItemMedium"
+        android:transitionName="@string/tn_note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tvNombre"
         app:layout_constraintStart_toStartOf="@id/tvNombre"
