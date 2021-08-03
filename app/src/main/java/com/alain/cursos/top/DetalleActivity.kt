@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatImageView
@@ -31,6 +32,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.raizlabs.android.dbflow.sql.language.SQLite
+import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,7 +52,11 @@ import java.util.*
 class DetalleActivity : AppCompatActivity() {
     @JvmField
     @BindView(R.id.imgFoto)
-    var imgFoto: AppCompatImageView? = null
+    var imgFoto: CircleImageView? = null
+
+    @JvmField
+    @BindView(R.id.imageCover)
+    var imageCover: AppCompatImageView? = null
 
     @JvmField
     @BindView(R.id.toolbar)
@@ -116,6 +122,10 @@ class DetalleActivity : AppCompatActivity() {
     @BindView(R.id.tilEstatura)
     var tilEstatura: TextInputLayout? = null
 
+    @JvmField
+    @BindView(R.id.tvName)
+    var tvName: TextView? = null
+
     private var mArtista: Artista? = null
     private var mMenuItem: MenuItem? = null
     private var mIsEdit = false
@@ -172,6 +182,11 @@ class DetalleActivity : AppCompatActivity() {
              }else{
                  toolbar?.navigationIcon?.setTint(Color.WHITE)
              }*/
+            if (verticalOffset == 0) {
+                tvName!!.visibility = View.VISIBLE
+            } else {
+                tvName!!.visibility = View.GONE
+            }
             if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
                 val percentage: Float =
                     Math.abs(
@@ -187,11 +202,17 @@ class DetalleActivity : AppCompatActivity() {
                 )
             }
         })
+        val options = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+            .centerCrop()
+        Glide.with(this).load(R.drawable.img_cover_material_design)
+            .apply(options)
+            .into(imageCover!!)
         configTitle()
     }
 
     private fun configTitle() {
         toolbarLayout!!.title = mArtista!!.nombreCompleto
+        tvName!!.setText(mArtista!!.nombreCompleto)
     }
 
     private fun configImageView(fotoUrl: String?) {

@@ -18,10 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="false"
-            android:transitionName="@string/tn_Name"
             app:contentScrim="@color/color_collapsin_toolbar_layout"
             app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded.Shadow"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/app_name"
             app:toolbarId="@+id/toolbar">
 
             <FrameLayout
@@ -29,11 +29,10 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgFoto"
+                    android:id="@+id/imageCover"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_bar_height"
-                    android:src="@drawable/ic_photo_size_select_actual"
-                    android:transitionName="@string/transition_name_photo" />
+                    android:src="@drawable/ic_photo_size_select_actual" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -57,6 +56,32 @@
                         style="@style/ImageViewButton"
                         android:src="@drawable/ic_earth_box" />
                 </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgFoto"
+                    android:layout_width="@dimen/img_detail_size"
+                    android:layout_height="@dimen/img_detail_size"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="@dimen/common_padding_detail_img"
+                    android:src="@drawable/ic_account_box"
+                    android:transitionName="@string/transition_name_photo"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="@dimen/common_padding_nano" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="26.5dp"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="20sp"
+                    android:transitionName="@string/tn_Name"
+                    tools:text="@string/app_name" />
             </FrameLayout>
 
             <androidx.appcompat.widget.Toolbar

@@ -48,8 +48,7 @@ class ArtistaAdapter internal constructor(
         val artista = artistas[position]
 
         holder.setListener(
-            artista, holder.imgFoto!!.rootView, holder.tvNota!!.rootView,
-            holder.tvOrden!!.rootView, holder.tvNombre!!.rootView
+            artista, holder.imgFoto!!.rootView, holder.tvNombre!!.rootView
         )
         holder.tvNombre!!.text = artista.nombreCompleto
         holder.tvNota!!.text = artista.notas
@@ -114,16 +113,12 @@ class ArtistaAdapter internal constructor(
         fun setListener(
             artista: Artista,
             imgPhoto: View,
-            tvNote: View,
-            tvOrder: View,
             tvName: View
         ) {
             containerMain!!.setOnClickListener { view: View? ->
                 listener.onItemClick(
                     artista,
                     imgPhoto,
-                    tvNote,
-                    tvOrder,
                     tvName
                 )//listener.onItemClick(artista) }
                 containerMain!!.setOnLongClickListener { view: View? ->
