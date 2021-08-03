@@ -46,7 +46,7 @@
          <item name="android:windowExitTransition">@transition/fade_out</item>-->
 
         <item name="android:windowEnterTransition">@transition/transition_enter_se</item>
-        <item name="android:windowExitTransition">@transition/fade_out</item>
+        <item name="android:windowExitTransition">@transition/transition_exit</item>
 
         <item name="android:fragmentSharedElementEnterTransition">@transition/share_elements</item>
         <item name="android:fragmentSharedElementReturnTransition">@transition/share_elements</item>
