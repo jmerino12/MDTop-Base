@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <slide xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="1000"
-    android:slideEdge="end" />
+    android:slideEdge="end">
+    <targets>
+        <target android:excludeId="@android:id/statusBarBackground" />
+    </targets>
+</slide>

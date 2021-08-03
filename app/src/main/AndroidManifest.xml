@@ -27,6 +27,7 @@
         </activity>
         <activity
             android:name=".AddArtistActivity"
+            android:theme="@style/MyTheme.DayNight.Add"
             android:label="@string/addArtist_title" />
         <activity
             android:name=".DetalleActivity"
