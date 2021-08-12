@@ -55,6 +55,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/item_padding_vertical"
         android:hint="@string/artist_hint_notas"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textAppearance="@style/ItemMedium"
         android:transitionName="@string/tn_note"
         app:layout_constraintBottom_toBottomOf="parent"

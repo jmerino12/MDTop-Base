@@ -48,35 +48,37 @@
         <item name="android:fontFamily">@font/roboto_condensed_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="TextAppearance.MyTheme.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">12sp</item>
+    </style>
     <!--
 
-    <style name="TextAppearance.MdcTypographyStyles.Body1" parent="TextAppearance.MaterialComponents.Body1">
+
+
+    <style name="TextAppearance.MyTheme.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/anton</item>
+        <item name="android:fontFamily">@font/anton</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="fontFamily">@font/anton</item>
         <item name="android:fontFamily">@font/anton</item>
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Body2" parent="TextAppearance.MaterialComponents.Body2">
+    <style name="TextAppearance.MyTheme.Overline" parent="TextAppearance.MaterialComponents.Overline">
         <item name="fontFamily">@font/anton</item>
         <item name="android:fontFamily">@font/anton</item>
         <item name="android:textSize">10sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/anton</item>
-        <item name="android:fontFamily">@font/anton</item>
-        <item name="android:textSize">10sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/anton</item>
-        <item name="android:fontFamily">@font/anton</item>
-        <item name="android:textSize">9sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Overline" parent="TextAppearance.MaterialComponents.Overline">
-        <item name="fontFamily">@font/anton</item>
-        <item name="android:fontFamily">@font/anton</item>
-        <item name="android:textSize">7sp</item>
     </style>-->
 </resources>
