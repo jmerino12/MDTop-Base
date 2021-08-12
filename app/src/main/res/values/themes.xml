@@ -59,6 +59,10 @@
         <item name="textAppearanceHeadline5">@style/TextAppearance.MyTheme.Headline5</item>
         <item name="textAppearanceHeadline6">@style/TextAppearance.MyTheme.Headline6</item>
 
+
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MyTheme.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MyTheme.Subtitle2</item>
+
     </style>
 
     <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
