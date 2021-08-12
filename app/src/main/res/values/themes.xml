@@ -50,6 +50,9 @@
 
         <item name="android:fragmentSharedElementEnterTransition">@transition/share_elements</item>
         <item name="android:fragmentSharedElementReturnTransition">@transition/share_elements</item>
+
+        <!-- Tyes -->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MyTheme.Headline6</item>
     </style>
 
     <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
