@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/font/roboto_condensed_regular.xml" value="0.27291666666666664" />
-        <entry key="app/src/main/res/layout/activity_detalle.xml" value="0.23897435897435898" />
+        <entry key="app/src/main/res/layout/activity_detalle.xml" value="1.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11296296296296296" />
         <entry key="app/src/main/res/layout/content_detalle.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/item_artist.xml" value="0.24270833333333333" />

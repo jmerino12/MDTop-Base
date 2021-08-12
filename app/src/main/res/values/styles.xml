@@ -39,6 +39,13 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="CollapsingToolbarExpanded" parent="TextAppearance.MyTheme.Headline5">
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowRadius">6</item>
+        <item name="android:shadowColor">@android:color/black</item>
+    </style>
+
     <style name="ItemLarge" parent="TextAppearance.MyTheme.Subtitle1">
         <item name="maxLines">1</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>

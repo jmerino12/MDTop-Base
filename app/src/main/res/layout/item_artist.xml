@@ -42,7 +42,6 @@
         android:layout_marginStart="@dimen/item_padding_horizontal"
         android:layout_toStartOf="@+id/tvOrden"
         android:layout_toEndOf="@id/imgFoto"
-
         android:hint="@string/artist_hint_nombre"
         android:textAppearance="@style/ItemLarge"
         android:transitionName="@string/tn_Name"

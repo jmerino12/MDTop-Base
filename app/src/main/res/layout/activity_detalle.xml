@@ -18,8 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="false"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.MyTheme.Headline6"
             app:contentScrim="@color/color_collapsin_toolbar_layout"
-            app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded.Shadow"
+            app:expandedTitleTextAppearance="@style/CollapsingToolbarExpanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="@string/app_name"
             app:toolbarId="@+id/toolbar">
@@ -76,10 +77,12 @@
                     android:layout_gravity="start|bottom"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="26.5dp"
+                    android:layout_marginBottom="24.5dp"
                     android:ellipsize="end"
+                    android:letterSpacing="0.0"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.MyTheme.Headline5"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="20sp"
                     android:transitionName="@string/tn_Name"
                     tools:text="@string/app_name" />
             </FrameLayout>
