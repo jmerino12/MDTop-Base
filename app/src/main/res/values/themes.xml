@@ -66,6 +66,8 @@
         <item name="textAppearanceBody1">@style/TextAppearance.MyTheme.Body1</item>
         <item name="textAppearanceBody2">@style/TextAppearance.MyTheme.Body2</item>
 
+        <item name="textAppearanceButton">@style/TextAppearance.MyTheme.Button</item>
+
     </style>
 
     <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">

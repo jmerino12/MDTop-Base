@@ -60,19 +60,19 @@
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textSize">12sp</item>
     </style>
-    <!--
-
 
 
     <style name="TextAppearance.MyTheme.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/anton</item>
-        <item name="android:fontFamily">@font/anton</item>
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.04</item>
     </style>
 
-    <style name="TextAppearance.MyTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/anton</item>
-        <item name="android:fontFamily">@font/anton</item>
+    <!--
+     <style name="TextAppearance.MyTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/comfortaa</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textSize">12sp</item>
     </style>
 
